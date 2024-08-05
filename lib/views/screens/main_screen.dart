@@ -99,8 +99,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> _proceedWithDownload() async {
-    const url =
-        'https://pub-7be1d45c4a744f86846c80e90df909eb.r2.dev/files/d2744b1d-45b5-4958-924f-6dd49b150e7f.pdf';
+    const url = 'https://www.freesumes.com/generatePDF.php';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
