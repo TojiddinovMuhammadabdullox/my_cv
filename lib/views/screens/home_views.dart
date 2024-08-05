@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({super.key});
+
+  @override
+  _HomeContentState createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
   void _navigate() async {
     const url =
         "https://yandex.uz/maps/geo/1508547282/?ll=72.048075%2C40.708170&z=14.23";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw "Couldn't find url";
-    }
-  }
-
-  void _openTG() async {
-    const url = "https://t.me/tojiddinov7";
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -30,15 +27,12 @@ class HomeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ZoomTapAnimation(
-            onTap: _openTG,
-            child: CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.grey.shade500,
-              child: const CircleAvatar(
-                radius: 55,
-                backgroundImage: AssetImage('assets/images/logo.png'),
-              ),
+          CircleAvatar(
+            radius: 60,
+            backgroundColor: Colors.grey.shade500,
+            child: const CircleAvatar(
+              radius: 55,
+              backgroundImage: AssetImage('assets/images/logo.png'),
             ),
           ),
           const SizedBox(height: 16),
@@ -82,8 +76,103 @@ class HomeContent extends StatelessWidget {
                   "Uzbekistan, Andijan, Shahrixan",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xff000072),
+                    color: Colors.red,
                   ),
+                ),
+              ),
+            ],
+          ),
+          // Container(
+          //   width: 400,
+          //   height: 200,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.grey.shade200,
+          //   ),
+          //   padding: const EdgeInsets.all(16.0),
+          //   child: SvgPicture.network(
+          //     'https://wakatime.com/badge/user/018c5f08-558c-4401-8e30-dd9882918751.svg',
+          //     width: 200, // Set your desired width
+          //     height: 60, // Set your desired height
+          //     fit: BoxFit
+          //         .contain, // Adjust the image to fit within the container
+          //     placeholderBuilder: (context) =>
+          //         const CircularProgressIndicator(),
+          //   ),
+          // ),
+          const SizedBox(height: 10),
+
+          const Text(
+            "You can find me",
+            style: TextStyle(
+              fontSize: 18,
+              color: Color.fromARGB(255, 47, 47, 224),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ZoomTapAnimation(
+                onTap: () async {
+                  const url = "https://t.me/tojiddinov7";
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw "Couldn't find url";
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Image.asset(
+                    "assets/icons/telegram.png",
+                  ),
+                ),
+              ),
+              ZoomTapAnimation(
+                onTap: () async {
+                  const url = "https://www.instagram.com/tojiddinovs7/";
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw "Couldn't find url";
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Image.asset(
+                    "assets/icons/instagram.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              ZoomTapAnimation(
+                onTap: () async {
+                  const url =
+                      "https://www.linkedin.com/in/muhammadabdulloh-tojiddinov-207a20273/";
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw "Couldn't find url";
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Image.asset("assets/icons/linkedin.png"),
+                ),
+              ),
+              ZoomTapAnimation(
+                onTap: () async {
+                  const url = "https://github.com/TojiddinovMuhammadabdullox";
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw "Couldn't find url";
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Image.asset("assets/icons/github.png"),
                 ),
               ),
             ],

@@ -21,10 +21,6 @@ class SkillsScreen extends StatelessWidget {
               skillName: 'Java',
             ),
             SkillItem(
-              iconPath: 'assets/icons/figma.png',
-              skillName: 'Figma',
-            ),
-            SkillItem(
               iconPath: 'assets/icons/kotlin.png',
               skillName: 'Kotlin',
             ),

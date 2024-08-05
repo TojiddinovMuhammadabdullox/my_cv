@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   bool _isLoading = false;
 
   final List<Widget> _screens = [
-    const HomeContent(),
+    HomeContent(),
     const SummaryScreen(),
     const AcademicBgScreen(),
     ExperienceScreen(),
@@ -34,12 +34,6 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -151,30 +145,11 @@ class _MainScreenState extends State<MainScreen> {
         child: Column(
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-              ),
+              decoration: const BoxDecoration(),
               child: Container(),
             ),
             Expanded(
-              child: Container(
-                color: Colors.blue,
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: [
-                    _buildDrawerItem('HOME', 0),
-                    _buildDrawerItem('SUMMARY', 1),
-                    _buildDrawerItem('ACADEMIC BACKGROUND', 2),
-                    _buildDrawerItem('RELEVANT EXPERIENCE', 3),
-                    _buildDrawerItem('TECH SKILLS', 4),
-                    _buildDrawerItem('LANGUAGES', 5),
-                    _buildDrawerItem('PORTFOLIO', null, bold: true),
-                    _buildDrawerItem('DOWNLOAD CV', null,
-                        bold: true, onTap: _downloadFile),
-                    _buildDrawerItem('CONTACT', null),
-                  ],
-                ),
-              ),
+              child: ListView(),
             ),
           ],
         ),
@@ -216,23 +191,6 @@ class _MainScreenState extends State<MainScreen> {
             color: Colors.cyan, // Random color
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildDrawerItem(String title, int? index,
-      {bool bold = false, VoidCallback? onTap}) {
-    return Container(
-      color: Colors.blue,
-      child: ListTile(
-        title: Text(
-          title,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-        onTap: onTap ?? (index != null ? () => _onItemTap(index) : null),
       ),
     );
   }
