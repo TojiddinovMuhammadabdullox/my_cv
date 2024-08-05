@@ -11,6 +11,7 @@ Widget buildSummaryItem({
       Icon(icon, size: 40, color: Colors.blue),
       const SizedBox(width: 10),
       Text(
+        textAlign: TextAlign.center,
         title,
         style: const TextStyle(
           fontSize: 20,
@@ -21,6 +22,7 @@ Widget buildSummaryItem({
       Padding(
         padding: const EdgeInsets.only(left: 50),
         child: Text(
+          textAlign: TextAlign.center,
           description,
           style: const TextStyle(fontSize: 16),
         ),
