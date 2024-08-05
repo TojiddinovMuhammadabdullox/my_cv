@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_cv/views/widgets/academic_item.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class AcademicBgScreen extends StatelessWidget {
   const AcademicBgScreen({super.key});
@@ -47,13 +48,15 @@ class AcademicBgScreen extends StatelessWidget {
               year: '2016',
             ),
             const SizedBox(height: 35),
-            GestureDetector(
+            ZoomTapAnimation(
               onTap: _navigate,
-              child: buildAcademicItem(
-                category: 'SPECIALIZATION',
-                title: 'FLUTTER DEVELOPER',
-                institution: 'ENTER GITHUB',
-                year: '2022',
+              child: Container(
+                child: buildAcademicItem(
+                  category: 'SPECIALIZATION',
+                  title: 'FLUTTER DEVELOPER',
+                  institution: 'ENTER GITHUB',
+                  year: '2022',
+                ),
               ),
             ),
           ],

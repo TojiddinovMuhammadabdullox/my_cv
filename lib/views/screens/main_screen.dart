@@ -208,7 +208,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavItem(
             icon: Icons.soup_kitchen_rounded,
             label: "Skills",
-            color: Colors.yellow, // Random color
+            color: const Color.fromARGB(255, 9, 144, 153), // Random color
           ),
           BottomNavItem(
             icon: Icons.language,
