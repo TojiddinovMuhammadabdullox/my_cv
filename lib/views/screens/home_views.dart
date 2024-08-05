@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({Key? key}) : super(key: key);
+  const HomeContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,53 +63,23 @@ class HomeContent extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: const Color(0xff000072),
-                child: const Icon(
-                  Icons.arrow_back,
+          Container(
+            width: double.infinity,
+            height: 55,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: const Color(0xff000072),
+            ),
+            child: const Center(
+              child: Text(
+                "Contact",
+                style: TextStyle(
                   color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                width: 200,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    const phoneNumber = 'tel: +998991075508';
-                    if (await canLaunch(phoneNumber)) {
-                      await launch(phoneNumber);
-                    } else {
-                      throw "Telfon qibomadi";
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff000072),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                    child: Text(
-                      'Contact',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: const Color(0xff000072),
-                child: const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+            ),
           ),
           const SizedBox(height: 16),
         ],

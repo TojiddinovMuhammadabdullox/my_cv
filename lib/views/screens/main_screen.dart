@@ -1,28 +1,30 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
-import 'package:permission_handler/permission_handler.dart';
+
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:my_cv/views/screens/academic_views.dart';
 import 'package:my_cv/views/screens/experience_views.dart';
 import 'package:my_cv/views/screens/home_views.dart';
 import 'package:my_cv/views/screens/languages_views.dart';
 import 'package:my_cv/views/screens/skills_views.dart';
 import 'package:my_cv/views/screens/summary_screen.dart';
+import 'package:my_cv/views/widgets/nav_bar.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   bool _isLoading = false;
 
-  static final List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _screens = [
     const HomeContent(),
     const SummaryScreen(),
     const AcademicBgScreen(),
@@ -32,6 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -53,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       }
     }
-    return true; // Permission granted for iOS or already granted for Android
+    return true;
   }
 
   Future<bool> _isAndroid11OrHigher() async {
@@ -75,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await _proceedWithDownload();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               content: Text('Storage permission denied. Unable to download.')),
         );
       }
@@ -91,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _proceedWithDownload() async {
-    final url =
+    const url =
         'https://pub-7be1d45c4a744f86846c80e90df909eb.r2.dev/files/d2744b1d-45b5-4958-924f-6dd49b150e7f.pdf';
     final response = await http.get(Uri.parse(url));
 
@@ -120,9 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -136,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: _isLoading
-                ? CircularProgressIndicator(color: Colors.black)
+                ? const CircularProgressIndicator(color: Colors.black)
                 : const Icon(Icons.picture_as_pdf, color: Colors.black),
             onPressed: _isLoading ? null : _downloadFile,
           ),
@@ -146,10 +152,10 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             DrawerHeader(
-              child: Container(),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
+              child: Container(),
             ),
             Expanded(
               child: Container(
@@ -174,40 +180,43 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xff000072),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: ModernBottomNavBar(
+        onItemSelected: (value) {
+          _onItemTapped(value);
+        },
+        items: [
+          BottomNavItem(
+            icon: Icons.home,
+            label: "Home",
+            color: Colors.purple, // Random color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.nat),
-            label: 'Summary',
+          BottomNavItem(
+            icon: Icons.link,
+            label: "Summary",
+            color: Colors.orange, // Random color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: 'Academic',
+          BottomNavItem(
+            icon: Icons.grading_rounded,
+            label: "Academic",
+            color: Colors.teal, // Random color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: 'Experience',
+          BottomNavItem(
+            icon: Icons.history_edu_sharp,
+            label: "Experience",
+            color: Colors.pink, // Random color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Skills',
+          BottomNavItem(
+            icon: Icons.soup_kitchen_rounded,
+            label: "Skills",
+            color: Colors.yellow, // Random color
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.language),
-            label: 'Languages',
+          BottomNavItem(
+            icon: Icons.language,
+            label: "Languages",
+            color: Colors.cyan, // Random color
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -224,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: bold ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-        onTap: onTap ?? (index != null ? () => _onItemTapped(index) : null),
+        onTap: onTap ?? (index != null ? () => _onItemTap(index) : null),
       ),
     );
   }
