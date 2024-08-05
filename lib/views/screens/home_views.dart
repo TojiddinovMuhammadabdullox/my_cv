@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
+  void _navigate() async {
+    const url =
+        "https://yandex.uz/maps/geo/1508547282/?ll=72.048075%2C40.708170&z=14.23";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "Couldn't find url";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,30 +64,43 @@ class HomeContent extends StatelessWidget {
             children: [
               Icon(Icons.location_pin, color: Colors.blue[900]),
               const SizedBox(width: 4),
-              const Text(
-                'Uzbekistan, Andijan, Shahrixan',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
+              TextButton(
+                onPressed: _navigate,
+                child: const Text(
+                  "Uzbekistan, Andijan, Shahrixan",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xff000072),
+                  ),
                 ),
               ),
             ],
           ),
           const Spacer(),
-          Container(
-            width: double.infinity,
-            height: 55,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: const Color(0xff000072),
-            ),
-            child: const Center(
-              child: Text(
-                "Contact",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+          ZoomTapAnimation(
+            onTap: () async {
+              const phoneNumber = 'tel: +998991075508';
+              if (await canLaunch(phoneNumber)) {
+                await launch(phoneNumber);
+              } else {
+                throw "Telfon qibomadi";
+              }
+            },
+            child: Container(
+              width: double.infinity,
+              height: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xff000072),
+              ),
+              child: const Center(
+                child: Text(
+                  "Contact",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
