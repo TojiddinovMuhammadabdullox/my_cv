@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_cv/views/widgets/summart_widget.dart';
+import 'package:my_cv/views/widgets/summart_widget.dart'; 
 
 class SummaryScreen extends StatelessWidget {
   const SummaryScreen({super.key});
