@@ -7,11 +7,12 @@ class TimelineItem extends StatelessWidget {
   final bool isFirst;
   final bool isLast;
 
-  const TimelineItem(
-      {super.key,
-      required this.experience,
-      this.isFirst = false,
-      this.isLast = false});
+  const TimelineItem({
+    super.key,
+    required this.experience,
+    this.isFirst = false,
+    this.isLast = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +25,43 @@ class TimelineItem extends StatelessWidget {
               Container(
                 height: 20.0,
                 width: 2.0,
-                color: Colors.pink,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.pink.shade300, Colors.purple.shade300],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
               ),
             Container(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               decoration: const BoxDecoration(
-                color: Colors.pink,
+                gradient: LinearGradient(
+                  colors: [Colors.pink, Colors.purple],
+                ),
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 4,
+                    offset: Offset(2, 2),
+                  ),
+                ],
               ),
-              child: const Icon(Icons.circle, color: Colors.white, size: 16.0),
+              child: const Icon(Icons.brightness_1,
+                  color: Colors.white, size: 16.0),
             ),
             if (!isLast)
               Container(
                 height: 20.0,
                 width: 2.0,
-                color: Colors.pink,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.pink.shade300, Colors.purple.shade300],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
               ),
           ],
         ),

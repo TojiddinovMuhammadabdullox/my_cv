@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/views/screens/academic_views.dart';
 import 'package:my_cv/views/screens/experience_views.dart';
 import 'package:my_cv/views/screens/home_views.dart';
 import 'package:my_cv/views/screens/languages_views.dart';
 import 'package:my_cv/views/screens/skills_views.dart';
-import 'package:my_cv/views/screens/summary_screen.dart';
 import 'package:my_cv/views/widgets/nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -26,8 +24,6 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     HomeContent(),
-    const SummaryScreen(),
-    const AcademicBgScreen(),
     ExperienceScreen(),
     const SkillsScreen(),
     const LanguagesScreen(),
@@ -164,16 +160,6 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icons.home,
             label: "Home",
             color: Colors.purple, // Random color
-          ),
-          BottomNavItem(
-            icon: Icons.link,
-            label: "Summary",
-            color: Colors.orange, // Random color
-          ),
-          BottomNavItem(
-            icon: Icons.grading_rounded,
-            label: "Academic",
-            color: Colors.teal, // Random color
           ),
           BottomNavItem(
             icon: Icons.history_edu_sharp,

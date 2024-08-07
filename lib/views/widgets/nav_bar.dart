@@ -66,6 +66,10 @@ class _ModernBottomNavBarState extends State<ModernBottomNavBar>
             offset: const Offset(0, -5),
           ),
         ],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -80,7 +84,7 @@ class _ModernBottomNavBarState extends State<ModernBottomNavBar>
                     : 1.0;
                 double opacity = _selectedIndex == index
                     ? 1.0
-                    : 1.0 - (0.5 * _animationController.value);
+                    : 0.6 + (0.4 * _animationController.value);
 
                 return Transform.scale(
                   scale: scale,
@@ -102,8 +106,7 @@ class _ModernBottomNavBarState extends State<ModernBottomNavBar>
                             widget.items[index].icon,
                             color: _colorTween.value,
                           ),
-                          const SizedBox(
-                              height: 4), // Space between icon and text
+                          const SizedBox(height: 4),
                           if (_selectedIndex == index)
                             SizeTransition(
                               sizeFactor: _animationController,

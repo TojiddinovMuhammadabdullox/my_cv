@@ -53,7 +53,7 @@ class ExperienceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       itemCount: experiences.length,
       itemBuilder: (context, index) {
         final experience = experiences[index];
