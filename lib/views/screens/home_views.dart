@@ -82,26 +82,7 @@ class _HomeContentState extends State<HomeContent> {
               ),
             ],
           ),
-          // Container(
-          //   width: 400,
-          //   height: 200,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.grey.shade200,
-          //   ),
-          //   padding: const EdgeInsets.all(16.0),
-          //   child: SvgPicture.network(
-          //     'https://wakatime.com/badge/user/018c5f08-558c-4401-8e30-dd9882918751.svg',
-          //     width: 200, // Set your desired width
-          //     height: 60, // Set your desired height
-          //     fit: BoxFit
-          //         .contain, // Adjust the image to fit within the container
-          //     placeholderBuilder: (context) =>
-          //         const CircularProgressIndicator(),
-          //   ),
-          // ),
           const SizedBox(height: 10),
-
           const Text(
             "You can find me",
             style: TextStyle(

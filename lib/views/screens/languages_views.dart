@@ -7,7 +7,6 @@ class LanguagesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
@@ -22,38 +21,27 @@ class LanguagesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             buildLanguageItem(
-              flag: Icons.language,
+              flagUrl:
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/1280px-Flag_of_Uzbekistan.svg.png",
               language: 'Uzbek',
               proficiency: 'native speaker',
               color: Colors.blue,
             ),
             const SizedBox(height: 20),
             buildLanguageItem(
-              flag: Icons.language,
-              language: 'Spanish',
+              flagUrl:
+                  "https://www.advantour.com/russia/images/symbolics/russia-flag.jpg",
+              language: 'Russia',
               proficiency: 'Basic',
               color: Colors.red,
             ),
             const SizedBox(height: 20),
             buildLanguageItem(
-              flag: Icons.language,
+              flagUrl:
+                  "https://t3.ftcdn.net/jpg/01/97/07/92/360_F_197079266_9VNYd3mK4kS7EvFlLOf6CDDbcYmEALE9.jpg",
               language: 'English',
               proficiency: 'Basic',
               color: Colors.blue,
-            ),
-            const SizedBox(height: 20),
-            buildLanguageItem(
-              flag: Icons.language,
-              language: 'Japanese',
-              proficiency: 'Basic',
-              color: Colors.orange,
-            ),
-            const SizedBox(height: 20),
-            buildLanguageItem(
-              flag: Icons.language,
-              language: 'French',
-              proficiency: 'Basic',
-              color: Colors.blueAccent,
             ),
           ],
         ),

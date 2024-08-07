@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   bool _isLoading = false;
 
   final List<Widget> _screens = [
-    HomeContent(),
+    const HomeContent(),
     ExperienceScreen(),
     const SkillsScreen(),
     const LanguagesScreen(),
