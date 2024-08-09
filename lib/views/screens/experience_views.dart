@@ -22,30 +22,6 @@ class ExperienceScreen extends StatelessWidget {
       company: "Octo Comunicación",
       description: "Ads design, layout design, social media design",
     ),
-    Experience(
-      yearRange: "2020 - 2020",
-      title: "FRONT END DEV. UI DESIGN",
-      company: "Sofftek",
-      description: "Web Design & developing with Angular",
-    ),
-    Experience(
-      yearRange: "2016 - 2020",
-      title: "GRAPHIC DESIGN",
-      company: "La Voz de Galicia",
-      description: "Online & offline advertising design",
-    ),
-    Experience(
-      yearRange: "2015",
-      title: "CONTENT MANAGER",
-      company: "Vector ITC",
-      description: "Manage language version for job web portal",
-    ),
-    Experience(
-      yearRange: "2012",
-      title: "GRAPHIC DESIGN",
-      company: "Freelance",
-      description: "Logo design, advertising, layout",
-    ),
   ];
 
   ExperienceScreen({super.key});

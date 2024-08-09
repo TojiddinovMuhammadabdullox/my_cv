@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cv/views/screens/experience_views.dart';
@@ -38,13 +37,11 @@ class _MainScreenState extends State<MainScreen> {
   Future<bool> _requestStoragePermission() async {
     if (Platform.isAndroid) {
       if (await _isAndroid11OrHigher()) {
-        // For Android 11 (API 30) and above
         if (!await Permission.manageExternalStorage.isGranted) {
           final status = await Permission.manageExternalStorage.request();
           return status.isGranted;
         }
       } else {
-        // For Android 10 and below
         if (!await Permission.storage.isGranted) {
           final status = await Permission.storage.request();
           return status.isGranted;
@@ -118,14 +115,21 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'My CV',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
           },
         ),
         actions: [
@@ -138,19 +142,52 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       drawer: Drawer(
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(),
-              child: Container(),
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xff000072),
+              ),
+              child: Center(
+                child: Text(
+                  'My CV',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
-            Expanded(
-              child: ListView(),
+            ListTile(
+              leading: const Icon(Icons.person, color: Colors.black),
+              title: const Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings, color: Colors.black),
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.black),
+              title: const Text('Logout'),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
       ),
-      body: _screens[_selectedIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _screens[_selectedIndex],
+      ),
       bottomNavigationBar: ModernBottomNavBar(
         onItemSelected: (value) {
           _onItemTapped(value);
@@ -159,22 +196,22 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavItem(
             icon: Icons.home,
             label: "Home",
-            color: Colors.purple, // Random color
+            color: Colors.purple,
           ),
           BottomNavItem(
             icon: Icons.history_edu_sharp,
             label: "Experience",
-            color: Colors.pink, // Random color
+            color: Colors.pink,
           ),
           BottomNavItem(
             icon: Icons.soup_kitchen_rounded,
             label: "Skills",
-            color: const Color.fromARGB(255, 9, 144, 153), // Random color
+            color: const Color.fromARGB(255, 9, 144, 153),
           ),
           BottomNavItem(
             icon: Icons.language,
             label: "Languages",
-            color: Colors.cyan, // Random color
+            color: Colors.cyan,
           ),
         ],
       ),
